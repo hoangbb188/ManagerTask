@@ -1,0 +1,46 @@
+.autform {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .autform form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .autform label {
+    margin-bottom: 10px;
+  }
+  
+  .autform input {
+    margin-left: 15px;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    float: right;
+  }
+  
+  .autform button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    
+  }
+  button:active {
+    box-shadow: 0 1px #808183;
+    transform: translateY(1px)
+  }
+  .autform.login{
+    background-color: #62a7df;
+  }
+  .autform.register{
+    background-color: #d38282;
+  }
+  
