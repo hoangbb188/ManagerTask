@@ -1,10 +1,10 @@
+
 .container{
     display: flex;
     width: 100%;
     flex-direction: column;
     
 }
-
 .task-header{
 }
 .task-content{
@@ -33,8 +33,28 @@
     display: flex;
     height: 50px;
     background-color: #eef2f6;
-    justify-content:space-between
+    justify-content:space-between;
+    margin-top: 6px;
 }
+input[type="checkbox"] {
+    appearance: none; 
+    background-color: #fff; 
+    border: 2px solid #8c949b; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    height: 18px; 
+    width: 18px; 
+    margin-right: 10px; 
+    position: relative; 
+}
+
+/* Hiệu ứng khi checkbox được chọn */
+input[type="checkbox"]:checked {
+    background-color: #000; 
+    border-color: #000; 
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M10.165 17.527 4.66 12.243l1.707-1.756 3.765 3.593 7.47-7.607 1.738 1.723z'/%3E%3C/svg%3E");
+}
+
 .taskbtn_left{
     display: flex;
     align-items: center;
@@ -46,4 +66,11 @@
 
 .taskbtn.add:hover {
   background-color: #364049;
+}
+.task_description{
+    border: none;
+}
+.task_description:focus {
+    outline: none; 
+    box-shadow: none; 
 }

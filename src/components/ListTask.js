@@ -1,6 +1,5 @@
 import React from "react";
 import TaskItem from "./TaskItem";
-
 function ListTask() {
   return (
     <div className="task-content">

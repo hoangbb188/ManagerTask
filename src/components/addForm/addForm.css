@@ -1,0 +1,121 @@
+/* .add-form{
+    /* display: flex;
+    direction: column; 
+    width: 50ch;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.15);
+}
+.add-form_header{
+    display: flex;
+    direction: row;
+    background-color: black;
+    color: white;
+    justify-content: space-between;
+
+}
+.close_add_form{
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: black;
+
+}
+.add-form_body{
+    display: flex;
+    direction: column;
+    align-content: center;
+
+}
+.submit_button{
+    color: white;
+    background-color: black;
+}
+.close_add_form:hover {
+    color: red;
+} */
+
+ .add-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50ch; 
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); 
+
+}
+
+.add-form_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; 
+    color: #fff; /* White text */
+    padding: 10px 20px; /* Spacing inside the header */
+    border-top-left-radius: 10px; /* Rounded corners */
+    border-top-right-radius: 10px; /* Rounded corners */
+}
+
+.close_add_form {
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 24px; /* Larger icon */
+}
+
+.close_add_form:hover {
+    color: red;
+}
+.close_add_form:focus {
+    outline: none; 
+    box-shadow: none; 
+}
+
+.add-form_body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px; /* Adding space between form elements */
+}
+
+.add-form_form p {
+    margin: 0 0 5px 0; /* Small margin for spacing */
+    color: black; /* White text for labels */
+}
+
+.add-form_form input, 
+.add-form_form textarea, 
+.add-form_form select {
+    width: 92%; /* Full width inputs */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    color: black;
+}
+
+textarea {
+    resize: none;
+}
+
+.add-form_form input::placeholder, 
+.add-form_form textarea::placeholder {
+    color: #aaa;
+}
+
+.submit_button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}

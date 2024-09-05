@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import AddTaskForm from "./addForm/AddTaskForm";
-function TaskHeader(){
+
+function TaskHeader() {
+    const [showForm, setShowForm] = useState(false);
+    const handleButtonClick = () => {
+        setShowForm(!showForm);
+    };
 
     return (
         <div className="task-header">
             <h3 className="title">HOME</h3>
-            <button type="button" className="taskbtn add" onClick={()=><AddTaskForm/>}><i class="fa-solid fa-plus"></i>Add new task</button>
+            <button 
+                type="button" 
+                className="taskbtn add" 
+                onClick={handleButtonClick}
+            >
+                <i className="fa-solid fa-plus"></i>
+                Add new task
+            </button>
+            {showForm && <AddTaskForm onClose={handleButtonClick} />}
         </div>
-    )
+    );
 }
+
 export default TaskHeader;

@@ -46,6 +46,7 @@
     font-weight: 400;
     display: flex;
     align-items: center;
-    
-    
   }
+.fa-plus{
+    padding-right: 10px;
+}
