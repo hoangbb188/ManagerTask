@@ -1,11 +1,27 @@
 import axios from "axios";
-const API_URL = "http://localhost:8082/tasks";
 
-export const createOrUpdateTask = (user) => {
-    return axios.post(`${API_URL}/createUser`,user)
+const API_URL = "http://localhost:8082/tasks"; 
+
+export const getAllTask = () => {
+  return axios.get(`${API_URL}/getAllTask`);
+};
+
+export const createOrUpdateTask = (task) => {
+  return axios.post(`${API_URL}/createOrUpdateTask`, task);
+};
+
+
+export const deleteTask = (id) => {
+  return axios.delete(`${API_URL}/${id}`);
+};
+
+
+export const getTaskById = (id) => {
+  return axios.get(`${API_URL}/${id}`);
+};
+
+// export const getTasks = (userId) => {
+//   return axios.post(`${API_URL}/getTasks`,{userId}); 
+export const getHello = () =>{
+  return axios.get(`${API_URL}/tests`);
 }
-export const getTaskbyUser = (user) => {
-    const { email, password} = user;
-    return axios.post(`${API_URL}/login`,user);
-  };
-  

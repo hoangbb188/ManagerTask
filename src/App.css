@@ -1,8 +1,9 @@
 
 .container{
     display: flex;
-    width: 100%;
+    width: 95%;
     flex-direction: column;
+    margin: 20px;
     
 }
 .task-header{
@@ -67,10 +68,10 @@ input[type="checkbox"]:checked {
 .taskbtn.add:hover {
   background-color: #364049;
 }
-.task_description{
+.task_button{
     border: none;
 }
-.task_description:focus {
+.task_button:focus {
     outline: none; 
     box-shadow: none; 
 }

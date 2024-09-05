@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import ListTask from "./components/ListTask";
 import TaskHeader from "./components/TaskHeader";
-import AddTaskForm from "./components/addForm/AddTaskForm";
+import { getHello } from "./components/api/task";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState(1);
+  const [helloMessage, setHelloMessage] = useState("");
+
+  useEffect(() => {
+    const fetchHelloMessage = async () => {
+      try {
+        const response = await getHello();
+        setHelloMessage(response.data); // Giả sử API trả về chuỗi trong response.data
+      } catch (error) {
+        console.error("Error fetching hello message:", error);
+      }
+    };
+    
+    fetchHelloMessage();
+  }, []);
   const handleLogin = (email,id) => {
     setIsLoggedIn(true);
     setUserEmail(email);
@@ -28,7 +43,8 @@ function App() {
       />
       <div className="container">
         <TaskHeader />
-        <ListTask />
+        <div>{helloMessage}</div> 
+        <ListTask userId={userId} />
       </div>
     </div>
   );

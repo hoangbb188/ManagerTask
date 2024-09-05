@@ -12,8 +12,8 @@ function LoginForm({ onClose, onLogin }) {
       .then((response) => {
         if (response.status === 200) {
           console.log("Login successful", response.data);
-          const { id } = response.data;
-          onLogin(email, id);
+          const id = response.data; // Capture userid here
+          onLogin(email, id); // Pass userid to the login handler
           onClose();
         } else {
           console.error("Login failed", response.statusText);
