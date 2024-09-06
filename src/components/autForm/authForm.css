@@ -7,6 +7,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    font-weight: 800;
   }
   
   .autform form {
@@ -20,7 +21,7 @@
   
   .autform input {
     margin-left: 15px;
-    padding: 8px;
+    padding: 6px;
     font-size: 16px;
     border-radius: 8px;
     float: right;
@@ -37,10 +38,12 @@
     box-shadow: 0 1px #808183;
     transform: translateY(1px)
   }
-  .autform.login{
-    background-color: #62a7df;
+  .autform.login {
+    background-color: rgb(124, 107, 238);
+    color: white;
   }
-  .autform.register{
-    background-color: #d38282;
+  .autform.register {
+    background-color: white;
+    color: rgb(104, 85, 224);
   }
   

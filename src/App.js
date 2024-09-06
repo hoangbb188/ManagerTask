@@ -3,26 +3,26 @@ import "./App.css";
 import Header from "./components/Header";
 import ListTask from "./components/ListTask";
 import TaskHeader from "./components/TaskHeader";
-import { getHello } from "./components/api/task";
+// import { getHello } from "./components/api/task";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [userId, setUserId] = useState(1);
+  const [userId, setUserId] = useState("1");
   const [helloMessage, setHelloMessage] = useState("");
 
-  useEffect(() => {
-    const fetchHelloMessage = async () => {
-      try {
-        const response = await getHello();
-        setHelloMessage(response.data); // Giả sử API trả về chuỗi trong response.data
-      } catch (error) {
-        console.error("Error fetching hello message:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchHelloMessage = async () => {
+  //     try {
+  //       const response = await getHello();
+  //       setHelloMessage(response.data); // Giả sử API trả về chuỗi trong response.data
+  //     } catch (error) {
+  //       console.error("Error fetching hello message:", error);
+  //     }
+  //   };
     
-    fetchHelloMessage();
-  }, []);
+  //   fetchHelloMessage();
+  // }, []);
   const handleLogin = (email,id) => {
     setIsLoggedIn(true);
     setUserEmail(email);
@@ -42,8 +42,7 @@ function App() {
         onLogout={handleLogout}
       />
       <div className="container">
-        <TaskHeader />
-        <div>{helloMessage}</div> 
+        <TaskHeader userId={userId}/>
         <ListTask userId={userId} />
       </div>
     </div>

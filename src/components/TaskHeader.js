@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddTaskForm from "./addForm/AddTaskForm";
 
-function TaskHeader() {
+function TaskHeader({userId}) {
     const [showForm, setShowForm] = useState(false);
     const handleButtonClick = () => {
         setShowForm(!showForm);
@@ -18,7 +18,7 @@ function TaskHeader() {
                 <i className="fa-solid fa-plus"></i>
                 Add new task
             </button>
-            {showForm && <AddTaskForm onClose={handleButtonClick} />}
+            {showForm && <AddTaskForm onClose={handleButtonClick}  userId={userId}/>}
         </div>
     );
 }

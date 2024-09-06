@@ -11,8 +11,8 @@ export const createOrUpdateTask = (task) => {
 };
 
 
-export const deleteTask = (id) => {
-  return axios.delete(`${API_URL}/${id}`);
+export const deleteTask = (taskUuid) => {
+  return axios.delete(`${API_URL}/${taskUuid}`);
 };
 
 
@@ -20,8 +20,8 @@ export const getTaskById = (id) => {
   return axios.get(`${API_URL}/${id}`);
 };
 
-// export const getTasks = (userId) => {
-//   return axios.post(`${API_URL}/getTasks`,{userId}); 
-export const getHello = () =>{
-  return axios.get(`${API_URL}/tests`);
-}
+export const getTasks = (userId) => {
+  return axios.get(`${API_URL}/getTasks/${userId}`); }
+// export const getHello = () =>{
+//   return axios.get(`${API_URL}/tests`);
+// }

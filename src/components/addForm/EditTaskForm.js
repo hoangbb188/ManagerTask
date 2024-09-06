@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import "./addForm.css";
-import {createOrUpdateTask} from "../api/task";
-function AddTaskForm({onClose,userId}) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  
+import { createOrUpdateTask } from "../api/task";
+function EditTaskForm({ onClose, userId, task }) {
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [dueDate, setDueDate] = useState(task.dueDate);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const task= {
+    const editedtask = {
+      taskUuid: task.taskUuid,
       title,
       description,
       dueDate,
-      user:{"userid":userId}
     };
     try {
-      await createOrUpdateTask(task);
-      onClose(); 
+      await createOrUpdateTask(editedtask);
+      onClose();
     } catch (error) {
       console.error("Error creating task:", error);
     }
@@ -24,7 +24,7 @@ function AddTaskForm({onClose,userId}) {
   return (
     <div className="add-form">
       <div className="add-form_header">
-        <h3 className="add-form_title">New task</h3>
+        <h3 className="add-form_title">Edit task</h3>
         <button type="button" className="close_add_form" onClick={onClose}>
           <i className="fa-solid fa-xmark"></i>
         </button>
@@ -56,11 +56,13 @@ function AddTaskForm({onClose,userId}) {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
           />
-          <button type="submit" className="submit_button">Create task</button>
+          <button type="submit" className="submit_button">
+            Save edit
+          </button>
         </form>
       </div>
     </div>
   );
 }
 
-export default AddTaskForm;
+export default EditTaskForm;
