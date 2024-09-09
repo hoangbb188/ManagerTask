@@ -1,11 +1,15 @@
 import axios from "axios";
-const API_URL1 = "http://localhost:8083/tasks";
-const API_URL2 = "http://localhost:8083/subtasks";
 
-export const getSubTaskbyUuids = (user) => {
-    return axios.post(`${API_URL}/createUser`,user)
+const API_URL = "http://localhost:8083/subtasks";
+
+export const createOrUpdateSubTask = (subTask) => {
+    return axios.post(`${API_URL}/createOrUpdateSubTask`, subTask);
 }
 
-export const createOrUpdateSubTask = (user) => {
-    return axios.post(`${API_URL}/createUser`,user)
+export const getSubTaskByTaskUuid = (taskUuid) => {
+    return axios.get(`${API_URL}/getSubTaskByTaskUuid/${taskUuid}`);
+}
+
+export const deleteSubTaskBySubUuid = (subUuid) => {
+    return axios.delete(`${API_URL}/${subUuid}`);
 }

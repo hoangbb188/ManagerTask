@@ -1,29 +1,36 @@
 import React, { useState } from "react";
 import "./addForm.css";
-import {createOrUpdateTask} from "../api/task";
-function AddTaskForm({onClose,userId}) {
+import { createOrUpdateSubTask } from "../api/subtask";
+
+function AddSubTaskForm({ onClose , taskUuid }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); 
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const task= {
-      title,
-      description,
-      dueDate,
-      user:{"userid":userId}
-    };
+    e.preventDefault(); 
+    setIsSubmitting(true); 
+
     try {
-      await createOrUpdateTask(task);
+      await createOrUpdateSubTask({
+        title,
+        description,
+        dueDate,
+        taskUuid: taskUuid
+      });
       onClose(); 
-    } catch (error) {
-      console.error("Error creating task:", error);
+    } catch (err) {
+      console.error("Error creating subtask", err);
+    } finally {
+      setIsSubmitting(false); 
     }
   };
+
   return (
     <div className="add-form">
       <div className="add-form_header">
-        <h3 className="add-form_title">New task</h3>
+        <h3 className="add-form_title">New Subtask</h3>
         <button type="button" className="close_add_form" onClick={onClose}>
           <i className="fa-solid fa-xmark"></i>
         </button>
@@ -36,12 +43,13 @@ function AddTaskForm({onClose,userId}) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            placeholder="Enter subtask title"
           />
           <p>Details</p>
           <textarea
             className="add-form_details"
             rows="10"
-            placeholder="Important details of your task..."
+            placeholder="Important details of your subtask..."
             autoComplete="off"
             maxLength="950"
             value={description}
@@ -55,11 +63,17 @@ function AddTaskForm({onClose,userId}) {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
           />
-          <button type="submit" className="submit_button" disabled={ !title|| !description} >Create task</button>
+          <button
+            type="submit"
+            className="submit_button"
+            disabled={isSubmitting || !title} 
+          >
+            {isSubmitting ? "Creating..." : "Create subtask"}
+          </button>
         </form>
       </div>
     </div>
   );
 }
 
-export default AddTaskForm;
+export default AddSubTaskForm;

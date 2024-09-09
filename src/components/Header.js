@@ -3,7 +3,7 @@ import LoginForm from "./autForm/LoginForm";
 import RegisterForm from "./autForm/RegisterForm";
 import "./Header.css";
 
-function Header({ isLoggedIn, userEmail, onLogin, onLogout }) {
+function Header({ isLoggedIn, userEmail, onLogin, onLogout,reload }) {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -29,7 +29,7 @@ function Header({ isLoggedIn, userEmail, onLogin, onLogout }) {
           <>
             <div className="header_logout">
               <p>Welcome, {userEmail}</p>
-              <button className="menubtn logout" onClick={onLogout}>
+              <button className="menubtn logout" onClick={()=>{onLogout()}}>
                 Logout
               </button>
             </div>

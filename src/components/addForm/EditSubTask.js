@@ -1,29 +1,48 @@
 import React, { useState } from "react";
 import "./addForm.css";
-import {createOrUpdateTask} from "../api/task";
-function AddTaskForm({onClose,userId}) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
+import { createOrUpdateSubTask } from "../api/subtask";
+
+function EditSubTask({ subTask, onClose }) {
+  const [title, setTitle] = useState(subTask.title);
+  const [description, setDescription] = useState(subTask.description);
+  const [dueDate, setDueDate] = useState(subTask.dueDate);
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     await createOrUpdateSubTask({
+  //       title,
+  //       description,
+  //       dueDate,
+  //       taskUuid: subTask.taskUuid,
+  //     });
+  //     onClose();
+  //   } catch (err) {
+  //     console.error("Error creating subtask", err);
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const task= {
+    const editedtask = {
+      subUuid: subTask.subUuid,
       title,
       description,
       dueDate,
-      user:{"userid":userId}
     };
     try {
-      await createOrUpdateTask(task);
-      onClose(); 
-    } catch (error) {
-      console.error("Error creating task:", error);
+      await createOrUpdateSubTask(editedtask);
+      onClose();
+    } catch (err) {
+      console.error("Error creating subtask", err);
     }
   };
+
+
   return (
     <div className="add-form">
       <div className="add-form_header">
-        <h3 className="add-form_title">New task</h3>
+        <h3 className="add-form_title">Edit Subtask</h3>
         <button type="button" className="close_add_form" onClick={onClose}>
           <i className="fa-solid fa-xmark"></i>
         </button>
@@ -36,12 +55,13 @@ function AddTaskForm({onClose,userId}) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            placeholder="Enter subtask title"
           />
           <p>Details</p>
           <textarea
             className="add-form_details"
             rows="10"
-            placeholder="Important details of your task..."
+            placeholder="Important details of your subtask..."
             autoComplete="off"
             maxLength="950"
             value={description}
@@ -55,11 +75,11 @@ function AddTaskForm({onClose,userId}) {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
           />
-          <button type="submit" className="submit_button" disabled={ !title|| !description} >Create task</button>
+          <button type="submit" className="submit_button">Save edit</button>
         </form>
       </div>
     </div>
   );
 }
 
-export default AddTaskForm;
+export default EditSubTask;

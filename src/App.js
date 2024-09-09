@@ -1,28 +1,34 @@
-import React, { useState,useEffect } from "react";
+import React, { useState} from "react";
 import "./App.css";
 import Header from "./components/Header";
 import ListTask from "./components/ListTask";
 import TaskHeader from "./components/TaskHeader";
-// import { getHello } from "./components/api/task";
+import { getTasks } from "./components/api/task";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [userId, setUserId] = useState("1");
-  const [helloMessage, setHelloMessage] = useState("");
+  const [userId, setUserId] = useState("");
+  const [tasks, setTasks] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchHelloMessage = async () => {
-  //     try {
-  //       const response = await getHello();
-  //       setHelloMessage(response.data); // Giả sử API trả về chuỗi trong response.data
-  //     } catch (error) {
-  //       console.error("Error fetching hello message:", error);
-  //     }
-  //   };
-    
-  //   fetchHelloMessage();
-  // }, []);
+  function reloadPage() {
+    window.location.reload();
+}
+    const fetchTasks = async () => {
+      if (userId) {  
+        try {
+          const response = await getTasks(userId); 
+          setTasks(response.data);
+        } catch (error) {
+          console.error("Error fetching tasks", error);
+        }
+      }
+    };
+
+    fetchTasks();
+  
+
+
   const handleLogin = (email,id) => {
     setIsLoggedIn(true);
     setUserEmail(email);
@@ -32,6 +38,7 @@ function App() {
     setIsLoggedIn(false);
     setUserEmail("");
     setUserId(null);
+    reloadPage();
   };
   return (
     <div className="App">
@@ -42,8 +49,8 @@ function App() {
         onLogout={handleLogout}
       />
       <div className="container">
-        <TaskHeader userId={userId}/>
-        <ListTask userId={userId} />
+        <TaskHeader userId={userId} tasks={tasks} reload={fetchTasks}/>
+        <ListTask tasks={tasks} reload={fetchTasks} />
       </div>
     </div>
   );
